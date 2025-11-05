@@ -1,0 +1,64 @@
+R1#config terminal 
+Enter configuration commands, one per line.  End with CNTL/Z. 
+R1(config)#int ethernet 1/0    
+R1(config-if)#exit 
+R1(config)#int ethernet 1/0                        
+R1(config-if)#ip address 1.1.1.1 255.255.255.252 
+R1(config-if)#no shutdown 
+R1(config-if)#exit 
+R1#ping 1.1.1.2 
+ 
+Type escape sequence to abort. 
+Sending 5, 100-byte ICMP Echos to 1.1.1.2, timeout is 2 seconds: 
+!!!!! 
+Success rate is 100 percent (5/5), round-trip min/avg/max = 8/9/12 ms 
+R1#telnet 1.1.1.2 
+Trying 1.1.1.2 ... Open 
+ 
+ 
+User Access Verification 
+ 
+Password:  
+//ENTRAMOS AL MODO USUARIO  
+R2>en 
+Password:  
+R2# 
+R2#show running 
+R2#show running-config  
+Building configuration... 
+ 
+Current configuration : 1247 bytes 
+! 
+upgrade fpd auto 
+version 12.4 
+service timestamps debug datetime msec 
+service timestamps log datetime msec 
+no service password-encryption 
+! 
+hostname R2 
+! 
+boot-start-marker 
+boot-end-marker 
+! 
+logging message-counter syslog 
+enable password cisco 
+! 
+no aaa new-model 
+ip source-route 
+no ip icmp rate-limit unreachable 
+ip cef 
+! 
+! 
+!          
+!         
+no ip domain lookup 
+no ipv6 cef 
+!          
+multilink bundle-name authenticated 
+!          
+!          
+!          
+!          
+!          
+!          --More--  
+[Connection to 1.1.1.2 closed by foreign host]
