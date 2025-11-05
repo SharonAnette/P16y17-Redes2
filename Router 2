@@ -1,0 +1,30 @@
+//Configuramos TELNET 
+R2#config terminal 
+Enter configuration commands, one per line.  End with CNTL/Z. 
+R2(config)#line vty 0 15 
+R2(config-line)#password cisco 
+R2(config-line)#exit 
+//Tratar de ocupar ? para conocer los comandos 
+R2(config)#enable ? 
+last-resort  Define enable action if no TACACS servers respond 
+password     Assign the privileged level password (MAX of 25 characters) 
+secret       Assign the privileged level secret (MAX of 25 characters) 
+use-tacacs   Use TACACS to check enable passwords 
+R2(config)#enable password cisco 
+R2(config)#exit 
+R2#config terminal 
+Enter configuration commands, one per line.  End with CNTL/Z. 
+R2(config)#line vty 0 15 
+R2(config-line)#no login 
+R2(config-line)#no password 
+R2(config-line)#login local 
+R2(config-line)#login ? 
+local  Local password checking 
+<cr> 
+R2(config-line)#exit   
+R2(config)#exit 
+R2#config terminal 
+Enter configuration commands, one per line.  End with CNTL/Z. 
+R2(config)#username escom password cisco 
+R2(config)#exit 
+R2#
